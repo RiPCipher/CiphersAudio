@@ -12,7 +12,7 @@ if env["platform"] == "windows":
     if env.get("use_mingw", False):
         env.Append(CCFLAGS=["-msse2", "-mfpmath=sse"])
     else:
-        env.Append(CCFLAGS=["/arch:AVX2"])
+        env.Append(CCFLAGS=["/arch:SSE2"])
 
 env.Append(CPPDEFINES=["PFFFT_ENABLE_FLOAT"])
 
