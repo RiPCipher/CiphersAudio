@@ -7,7 +7,12 @@
 /**************************************************************************/
 
 #include "fft_buffer.h"
-#include "thirdparty/pffft/pffft.h"
+#include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
+#include <cstring>
+
+// Include pffft for aligned memory allocation
+#include "pffft.h"
 
 FFTBuffer::FFTBuffer() {
 }
@@ -29,67 +34,58 @@ void FFTBuffer::_allocate(int p_size) {
 	is_aligned = true;
 
 	// Initialize to zero
-	memset(buffer, 0, size * sizeof(float));
+	memset(buffer, 0, p_size * sizeof(float));
 }
 
 void FFTBuffer::_deallocate() {
-	if (buffer != nullptr) {
+	if (buffer) {
 		if (is_aligned) {
 			pffft_aligned_free(buffer);
-		} else {
-			memfree(buffer);
 		}
 		buffer = nullptr;
+		size = 0;
+		is_aligned = false;
 	}
-	size = 0;
-	is_aligned = false;
 }
 
 void FFTBuffer::resize(int p_size) {
 	if (p_size == size) {
 		return;
 	}
+
 	_allocate(p_size);
 }
 
 void FFTBuffer::set_data(const PackedFloat32Array &p_data) {
 	int data_size = p_data.size();
-
-	if (size != data_size) {
+	if (data_size != size) {
 		resize(data_size);
 	}
 
-	if (buffer == nullptr || data_size == 0) {
-		return;
+	if (buffer && data_size > 0) {
+		const float *data_ptr = p_data.ptr();
+		memcpy(buffer, data_ptr, data_size * sizeof(float));
 	}
-
-	// Copy data from PackedFloat32Array to our buffer
-	const float *src = p_data.ptr();
-	memcpy(buffer, src, data_size * sizeof(float));
 }
 
 PackedFloat32Array FFTBuffer::get_data() const {
 	PackedFloat32Array result;
-
-	if (buffer == nullptr || size == 0) {
-		return result;
+	if (buffer && size > 0) {
+		result.resize(size);
+		float *result_ptr = result.ptrw();
+		memcpy(result_ptr, buffer, size * sizeof(float));
 	}
-
-	result.resize(size);
-	float *dst = result.ptrw();
-	memcpy(dst, buffer, size * sizeof(float));
-
 	return result;
 }
 
 void FFTBuffer::clear() {
-	if (buffer != nullptr && size > 0) {
+	if (buffer && size > 0) {
 		memset(buffer, 0, size * sizeof(float));
 	}
 }
 
 void FFTBuffer::fill(float p_value) {
-	if (buffer != nullptr) {
+	if (buffer) {
 		for (int i = 0; i < size; i++) {
 			buffer[i] = p_value;
 		}

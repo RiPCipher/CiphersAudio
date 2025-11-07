@@ -1,0 +1,60 @@
+name: Build CiphersAudio
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        include:
+          - target: template_release
+            artifact: windows-release
+          - target: template_debug
+            artifact: windows-debug
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Setup SCons
+        run: |
+          python -m pip install scons
+          scons --version
+
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x86_64
+
+      - name: Cache godot-cpp
+        uses: actions/cache@v4
+        with:
+          path: godot-cpp/bin
+          key: godot-cpp-windows-${{ matrix.target }}-${{ hashFiles('godot-cpp/**') }}
+
+      - name: Build godot-cpp
+        run: |
+          scons -C godot-cpp platform=windows target=${{ matrix.target }} arch=x86_64
+
+      - name: Build extension
+        run: |
+          scons platform=windows target=${{ matrix.target }} arch=x86_64
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: bin/*

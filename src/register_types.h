@@ -9,7 +9,9 @@
 #ifndef PFFFT_REGISTER_TYPES_H
 #define PFFFT_REGISTER_TYPES_H
 
-#include "modules/register_module_types.h"
+#include <godot_cpp/core/class_db.hpp>
+
+using namespace godot;
 
 void initialize_pffft_module(ModuleInitializationLevel p_level);
 void uninitialize_pffft_module(ModuleInitializationLevel p_level);

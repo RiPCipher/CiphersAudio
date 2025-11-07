@@ -1,0 +1,38 @@
+# SCons build cache
+.scons_cache/
+.sconsign.dblite
+
+# Compiled binaries
+bin/
+!bin/.gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS specific
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE specific
+.vscode/
+.idea/
+*.sublime-*
+.vs/
+
+# Build artifacts
+*.o
+*.obj
+*.exp
+*.lib
+*.pdb
+*.ilk
+
+# Godot
+.godot/
+*.import
+*.translation
+export_presets.cfg
