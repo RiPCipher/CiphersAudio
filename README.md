@@ -1,6 +1,8 @@
 # CiphersAudio
 Audio Extension for Godot
 
+<img width="1153" height="646" alt="FFT" src="https://github.com/user-attachments/assets/7e4e9fba-02a9-47a6-8751-f53285e80c8b" />
+
 
 Currently Features:
 - FFTProcessor Class
