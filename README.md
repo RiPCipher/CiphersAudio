@@ -4,17 +4,33 @@ Audio Extension for Godot
 <img width="1153" height="646" alt="FFT" src="https://github.com/user-attachments/assets/7e4e9fba-02a9-47a6-8751-f53285e80c8b" />
 
 
-Currently Features:
-- FFTProcessor Class
+Current Features:
+- FFTProcessor Class (Useful for Visualization, although some work needs done to sync with realtime audio as it is not hooked into the Audio Stream(s))
 - FFTBuffer Class
 
 # Going Forward
-Near Goals:
-- Wrap pffft to be usable in GDScript
-- Create AudioStreamAdditive to enable additive synthesis within the engine
-- Implement an Audio Manager to simplfy audio management and usage throughout scenes
-- Implement an "AudioZone3D" node to enable simpler audio effects management witihn/throughout a scene
+Goals:
 
-Far Goals:
-- Implement a proper convolution reverb effect that utilizes provided impulse response (and ideally could be modified at runtime using the AudioZone node)
-- TBD
+DSP - 
+- Implement Multiple Oscillator types (Sine, Saw, Square, Noise)
+- Implement Envelopes (and ADSR)
+- LFOs
+- Additional Effects (Improved EQ's, New Filters, Additioanl Distortion effects, other small things)
+
+UI -
+- GDScript based controls (Knobs, Meters, Etc)
+
+'Maybe' Goals:
+- Improved Reverb effect(s)
+- Improved Delay effect(s)
+- Improved Mixer
+- Voice Management / Polyphony
+
+'Its a nice thought' Goals: (Ranked by percieved viability)
+- Wavetable Oscillator
+- 'Unison'-like Detune Effect(s)
+- Proper Vocoding
+- Proper Convolution Reverb
+- Anything that Serum does well
+- Anything Ableton does well
+
