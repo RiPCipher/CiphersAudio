@@ -13,8 +13,8 @@
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/godot.hpp>
 
-#include "fft_buffer.h"
-#include "fft_processor.h"
+#include "fft/fft_buffer.h"
+#include "fft/fft_processor.h"
 
 using namespace godot;
 
@@ -23,7 +23,6 @@ void initialize_pffft_module(ModuleInitializationLevel p_level) {
 		return;
 	}
 
-	// Register FFT classes
 	ClassDB::register_class<FFTBuffer>();
 	ClassDB::register_class<FFTProcessor>();
 }
@@ -33,11 +32,9 @@ void uninitialize_pffft_module(ModuleInitializationLevel p_level) {
 		return;
 	}
 
-	// Cleanup if needed
 }
 
 extern "C" {
-	// Initialization entry point
 	GDExtensionBool GDE_EXPORT ciphersaudio_library_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, const GDExtensionClassLibraryPtr p_library, GDExtensionInitialization *r_initialization) {
 		godot::GDExtensionBinding::InitObject init_obj(p_get_proc_address, p_library, r_initialization);
 
