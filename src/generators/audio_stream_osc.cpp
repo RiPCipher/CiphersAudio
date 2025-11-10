@@ -77,7 +77,7 @@ void AudioStreamPlaybackOsc::_seek(double p_time) {
 	// No seeking for continuous oscillator
 }
 
-int32_t AudioStreamPlaybackOsc::_mix(AudioFrame *p_buffer, double p_rate_scale, int32_t p_frames) {
+int AudioStreamPlaybackOsc::_mix(AudioFrame *p_buffer, float p_rate_scale, int p_frames) {
 	if (stream.is_null()) {
 		// Fill with silence if no stream
 		for (int32_t i = 0; i < p_frames; i++) {
