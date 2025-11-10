@@ -15,7 +15,8 @@ DSP -
 - Implement Multiple Oscillator types (Sine, Saw, Square, Noise)
 - Implement Envelopes (and ADSR)
 - LFOs
-- Additional Effects (Improved EQ's, New Filters, Additioanl Distortion effects, other small things)
+- Additional Effects (Improved EQ's, New Filters, Additional Distortion effects, other small things)
+- Voice Management / Polyphony
 
 UI -
 - GDScript based controls (Knobs, Meters, Etc)
@@ -24,7 +25,6 @@ UI -
 - Improved Reverb effect(s)
 - Improved Delay effect(s)
 - Improved Mixer
-- Voice Management / Polyphony
 
 'Its a nice thought' Goals: (Ranked by percieved viability)
 - Wavetable Oscillator
