@@ -15,6 +15,7 @@
 
 #include "fft/fft_buffer.h"
 #include "fft/fft_processor.h"
+#include "generators/audio_stream_osc.h"
 
 using namespace godot;
 
@@ -23,8 +24,13 @@ void initialize_pffft_module(ModuleInitializationLevel p_level) {
 		return;
 	}
 
+	// FFT classes
 	ClassDB::register_class<FFTBuffer>();
 	ClassDB::register_class<FFTProcessor>();
+
+	// Generator classes
+	ClassDB::register_class<AudioStreamOsc>();
+	ClassDB::register_class<AudioStreamPlaybackOsc>();
 }
 
 void uninitialize_pffft_module(ModuleInitializationLevel p_level) {
