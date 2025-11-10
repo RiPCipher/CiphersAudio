@@ -2,8 +2,8 @@
 /*  register_types.h                                                      */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             CIPHERS AUDIO                              */
+/*                        https://github.com/RiPCipher/CiphersAudio       */
 /**************************************************************************/
 
 #ifndef CIPHERSAUDIO_REGISTER_TYPES_H

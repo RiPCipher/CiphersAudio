@@ -2,8 +2,8 @@
 /*  fft_processor.h                                                       */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             CIPHERS AUDIO                              */
+/*                        https://github.com/RiPCipher/CiphersAudio       */
 /**************************************************************************/
 
 #ifndef FFT_PROCESSOR_H

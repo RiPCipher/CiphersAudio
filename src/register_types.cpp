@@ -2,8 +2,8 @@
 /*  register_types.cpp                                                    */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             CIPHERS AUDIO                              */
+/*                        https://github.com/RiPCipher/CiphersAudio       */
 /**************************************************************************/
 
 #include "register_types.h"
