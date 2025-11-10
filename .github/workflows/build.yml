@@ -35,11 +35,15 @@ jobs:
         with:
           arch: x86_64
 
+      - name: Get godot-cpp commit hash
+        id: godot-cpp-hash
+        run: echo "hash=$(git rev-parse HEAD:godot-cpp)" >> $GITHUB_OUTPUT
+
       - name: Cache godot-cpp
         uses: actions/cache@v4
         with:
           path: godot-cpp/bin
-          key: godot-cpp-windows-${{ matrix.target }}-${{ hashFiles('godot-cpp/**') }}
+          key: godot-cpp-windows-${{ matrix.target }}-${{ steps.godot-cpp-hash.outputs.hash }}
 
       - name: Build godot-cpp
         run: |
