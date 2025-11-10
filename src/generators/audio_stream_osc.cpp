@@ -81,8 +81,9 @@ int AudioStreamPlaybackOsc::_mix(AudioFrame *p_buffer, float p_rate_scale, int p
 	if (stream.is_null()) {
 		// Fill with silence if no stream
 		for (int32_t i = 0; i < p_frames; i++) {
-			p_buffer[i] = AudioFrame(0.0f, 0.0f);
-		}
+            p_buffer[i].left = 0.0f;
+            p_buffer[i].right = 0.0f;
+        }
 		return p_frames;
 	}
 
@@ -93,7 +94,8 @@ int AudioStreamPlaybackOsc::_mix(AudioFrame *p_buffer, float p_rate_scale, int p
 		float sample = generate_sample();
 		
 		// Output same signal to both channels (mono to stereo)
-		p_buffer[i] = AudioFrame(sample, sample);
+		p_buffer[i].left = sample;
+        p_buffer[i].right = sample;
 
 		// Advance phase
 		phase += phase_increment;
@@ -108,9 +110,7 @@ int AudioStreamPlaybackOsc::_mix(AudioFrame *p_buffer, float p_rate_scale, int p
 }
 
 void AudioStreamPlaybackOsc::_tag_used_streams() {
-	if (stream.is_valid()) {
-		stream->tag_used(0);
-	}
+	// No nested streams
 }
 
 // AudioStreamOsc Implementation
