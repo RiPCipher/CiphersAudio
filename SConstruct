@@ -4,6 +4,7 @@ env = SConscript("godot-cpp/SConstruct")
 
 env.Append(CPPPATH=["src/"])
 env.Append(CPPPATH=["src/fft/"])
+env.Append(CPPPATH=["src/generators/"])
 env.Append(CPPPATH=["thirdparty/pffft/"])
 
 if env["platform"] == "windows":
@@ -18,6 +19,9 @@ sources = Glob("src/*.cpp")
 
 fft_sources = Glob("src/fft/*.cpp")
 sources += fft_sources
+
+generator_sources = Glob("src/generators/*.cpp")
+sources += generator_sources
 
 pffft_sources = [
     "thirdparty/pffft/pffft.c",
